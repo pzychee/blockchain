@@ -1,0 +1,101 @@
+{% extends 'base.html' %}
+{% block title %}Block Details{% endblock %}
+{% block content %}
+<div class="container-fluid px-4">
+    <!-- Block Details Card -->
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="card border-0 shadow-sm">
+                <div class="card-body">
+                    <h2 class="card-title mb-4">Block Details</h2>
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <div class="card border-0 shadow-sm">
+                                <div class="card-body">
+                                    <h5 class="card-title">Block Information</h5>
+                                    <div class="list-group list-group-flush">
+                                        <div class="list-group-item">
+                                            <div class="d-flex w-100 justify-content-between">
+                                                <h6 class="mb-1">Block Number</h6>
+                                                <span class="text-muted">{{ block.block_number }}</span>
+                                            </div>
+                                        </div>
+                                        <div class="list-group-item">
+                                            <div class="d-flex w-100 justify-content-between">
+                                                <h6 class="mb-1">Timestamp</h6>
+                                                <span class="text-muted">{{ block.timestamp }}</span>
+                                            </div>
+                                        </div>
+                                        <div class="list-group-item">
+                                            <div class="d-flex w-100 justify-content-between">
+                                                <h6 class="mb-1">Hash</h6>
+                                                <span class="text-muted">{{ block.hash }}</span>
+                                            </div>
+                                        </div>
+                                        <div class="list-group-item">
+                                            <div class="d-flex w-100 justify-content-between">
+                                                <h6 class="mb-1">Previous Hash</h6>
+                                                <span class="text-muted">{{ block.previous_hash }}</span>
+                                            </div>
+                                        </div>
+                                        <div class="list-group-item">
+                                            <div class="d-flex w-100 justify-content-between">
+                                                <h6 class="mb-1">Nonce</h6>
+                                                <span class="text-muted">{{ block.nonce }}</span>
+                                            </div>
+                                        </div>
+                                        <div class="list-group-item">
+                                            <div class="d-flex w-100 justify-content-between">
+                                                <h6 class="mb-1">Difficulty</h6>
+                                                <span class="text-muted">{{ block.difficulty }}</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card border-0 shadow-sm">
+                                <div class="card-body">
+                                    <h5 class="card-title">Transactions</h5>
+                                    <table class="table table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th>Transaction Hash</th>
+                                                <th>Sender ID</th>
+                                                <th>Recipient ID</th>
+                                                <th>Amount</th>
+                                                <th>Timestamp</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {% for tx in transactions %}
+                                                <tr>
+                                                    <td>{{ tx.transaction_hash }}</td>
+                                                    <td>{{ tx.sender_id }}</td>
+                                                    <td>{{ tx.recipient_id }}</td>
+                                                    <td>{{ tx.amount }}</td>
+                                                    <td>{{ tx.timestamp }}</td>
+                                                </tr>
+                                            {% endfor %}
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Back Button -->
+    <div class="row">
+        <div class="col-12">
+            <a href="{{ url_for('blockchain_explorer') }}" class="btn btn-primary btn-lg">
+                <i class="fas fa-arrow-left me-2"></i>Back to Blockchain Explorer
+            </a>
+        </div>
+    </div>
+</div>
+{% endblock %}

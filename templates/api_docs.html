@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block title %}API Documentation{% endblock %}
+{% block content %}
+    <h2>API Documentation</h2>
+    <p>Here you can find documentation for the available API endpoints.</p>
+    <h3>Endpoints</h3>
+    <ul>
+        <li><a href="{{ url_for('api_register') }}">/api/register</a></li>
+        <li><a href="{{ url_for('api_login') }}">/api/login</a></li>
+        <li><a href="{{ url_for('api_get_user') }}">/api/user</a></li>
+        <li><a href="{{ url_for('api_send_payment') }}">/api/send_payment</a></li>
+        <li><a href="{{ url_for('api_get_transactions') }}">/api/transactions</a></li>
+        <li><a href="{{ url_for('api_get_notifications') }}">/api/notifications</a></li>
+        <li><a href="{{ url_for('api_blockchain_status') }}">/api/blockchain/status</a></li>
+        <li><a href="{{ url_for('api_blockchain_blocks') }}">/api/blockchain/blocks</a></li>
+        <li><a href="{{ url_for('api_blockchain_block', block_number=1) }}">/api/blockchain/block/<block_number></a></li>
+        <li><a href="{{ url_for('api_transaction', transaction_hash='example_hash') }}">/api/transaction/<transaction_hash></a></li>
+        <li><a href="{{ url_for('api_change_password') }}">/api/user/change_password</a></li>
+        <li><a href="{{ url_for('api_change_pin') }}">/api/user/change_pin</a></li>
+        <li><a href="{{ url_for('api_request_reset_password') }}">/api/user/request_reset_password</a></li>
+    </ul>
+{% endblock %}

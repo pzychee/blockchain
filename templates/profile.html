@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+
+{% block title %}Profile{% endblock %}
+
+{% block content %}
+    <div class="container mt-4">
+        <h2 class="text-primary">Profile</h2>
+        <!-- User Information Section -->
+        <div class="card mb-4 shadow-sm">
+            <div class="card-body">
+                <p><strong>Email:</strong> {{ user.email }}</p>
+                <p><strong>Payment ID:</strong> {{ user.payment_id }}</p>
+                <p><strong>Balance:</strong> {{ user.balance }}</p>
+                <p><strong>Last Login:</strong> {{ user.last_login }}</p>
+            </div>
+        </div>
+        
+        <!-- Change Password Section -->
+        <div class="card mb-4 shadow-sm">
+            <div class="card-header bg-light">
+                <h3 class="card-title text-primary mb-0">Change Password</h3>
+            </div>
+            <div class="card-body">
+                <form method="POST" action="{{ url_for('profile') }}">
+                    <input type="hidden" name="action" value="change_password">
+                    <div class="form-group mb-3">
+                        <label for="current_password">Current Password</label>
+                        <input type="password" class="form-control" id="current_password" name="current_password" required>
+                    </div>
+                    <div class="form-group mb-3">
+                        <label for="new_password">New Password</label>
+                        <input type="password" class="form-control" id="new_password" name="new_password" required>
+                    </div>
+                    <div class="form-group mb-3">
+                        <label for="confirm_password">Confirm New Password</label>
+                        <input type="password" class="form-control" id="confirm_password" name="confirm_password" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary w-100">Change Password</button>
+                </form>
+            </div>
+        </div>
+        
+        <!-- Change Payment PIN Section -->
+        <div class="card mb-4 shadow-sm">
+            <div class="card-header bg-light">
+                <h3 class="card-title text-primary mb-0">Change Payment PIN</h3>
+            </div>
+            <div class="card-body">
+                <form method="POST" action="{{ url_for('profile') }}">
+                    <input type="hidden" name="action" value="change_pin">
+                    <div class="form-group mb-3">
+                        <label for="current_pin">Current PIN</label>
+                        <input type="text" class="form-control" id="current_pin" name="current_pin" required>
+                    </div>
+                    <div class="form-group mb-3">
+                        <label for="new_pin">New PIN</label>
+                        <input type="text" class="form-control" id="new_pin" name="new_pin" required>
+                    </div>
+                    <div class="form-group mb-3">
+                        <label for="confirm_pin">Confirm New PIN</label>
+                        <input type="text" class="form-control" id="confirm_pin" name="confirm_pin" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary w-100">Change PIN</button>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}
