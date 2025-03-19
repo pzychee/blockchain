@@ -6,3 +6,4 @@ Flask-Limiter==2.7.0
 Flask-WTF==1.0.1
 werkzeug==2.2.2
 PyJWT==2.5.0
+SQLAlchemy ==  1.4.47
