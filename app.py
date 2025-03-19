@@ -38,12 +38,7 @@ db = SQLAlchemy(app)
 migrate = Migrate(app, db)
 mail = Mail(app)
  
-limiter = Limiter(
-    get_remote_address,
-    app=app,
-    default_limits=["100 per minute"],
-    storage_uri="memory://"
-)
+ 
 
 # -------------------------
 # Database Models
@@ -391,7 +386,7 @@ def index():
     return render_template('index.html')
 
 @app.route('/register', methods=['GET', 'POST'])
-@limiter.limit("10 per minute")
+ 
 def register():
     if request.method == 'POST':
         email = request.form.get('email')
@@ -456,7 +451,7 @@ def verify_email(token):
     return redirect(url_for('login'))
 
 @app.route('/login', methods=['GET', 'POST'])
-@limiter.limit("10 per minute")
+ 
 def login():
     if request.method == 'POST':
         email = request.form.get('email')
@@ -709,7 +704,7 @@ def notifications():
 # -------------------------
 
 @app.route('/api/register', methods=['POST'])
-@limiter.limit("5 per minute")
+ 
  
 def api_register():
     data = request.get_json()
@@ -753,7 +748,7 @@ def api_register():
     }), 201
 
 @app.route('/api/login', methods=['POST'])
-@limiter.limit("10 per minute")
+ 
  
 def api_login():
     data = request.get_json()
@@ -802,7 +797,7 @@ def api_get_user(current_user):
 
 @app.route('/api/send_payment', methods=['POST'])
 @token_required
-@limiter.limit("10 per minute")
+ 
 def api_send_payment(current_user):
     data = request.get_json()
     
